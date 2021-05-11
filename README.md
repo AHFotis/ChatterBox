@@ -1,2 +1,2 @@
 # ChatterBox
-Test application 
+Test application

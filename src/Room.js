@@ -3,7 +3,6 @@ import Video from 'twilio-video';
 import Participant from "./Participant";
 
 const Room = ({ roomName, token, handleLogout }) => {
-// const Room = ({ roomName, room, handleLogout }) => 
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
 
@@ -21,7 +20,7 @@ const Room = ({ roomName, token, handleLogout }) => {
     }).then(room => {
       setRoom(room);
       room.on('participantConnected', participantConnected);
-      // room.on('participantDisconnected', participantDisconnected);
+      room.on('participantDisconnected', participantDisconnected);
       room.participants.forEach(participantConnected);
     });
     return () => {
@@ -39,24 +38,6 @@ const Room = ({ roomName, token, handleLogout }) => {
     };
   }, [roomName, token]);
 
-  //   const participantDisconnected = (participant) => {
-  //     setParticipants((prevParticipants) =>
-  //       prevParticipants.filter((p) => p !== participant)
-  //     );
-  //   };
-
-  //   room.on("participantConnected", participantConnected);
-  //   room.on("participantDisconnected", participantDisconnected);
-  //   room.participants.forEach(participantConnected);
-  //   return () => {
-  //     room.off("participantConnected", participantConnected);
-  //     room.off("participantDisconnected", participantDisconnected);
-  //   };
-  // }, [room]);
-
-  // const remoteParticipants = participants.map(participant => (
-  //   <p key={participant.sid}>{participant.identity}</p>
-  // ));
 
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
@@ -68,7 +49,6 @@ const Room = ({ roomName, token, handleLogout }) => {
       <button onClick={handleLogout}>Log out</button>
       <div className="local-participant">
         {room ? (
-          //  <p key={room.localParticipant.sid}>{room.localParticipant.identity}</p>
           <Participant
             key={room.localParticipant.sid}
             participant={room.localParticipant}
