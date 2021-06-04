@@ -35,6 +35,7 @@ app.post('/video/token', (req, res) => {
   const identity = req.body.identity;
   const room = req.body.room;
   const token = videoToken(identity, room, config);
+  console.log(identity, room, token)
   sendTokenResponse(token, res);
 });
 
