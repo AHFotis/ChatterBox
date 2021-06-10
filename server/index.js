@@ -1,8 +1,8 @@
-const config = require('./server/config');
+const config = require('./config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
-const { videoToken } = require('./server/tokens');
+const { videoToken } = require('./tokens');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
